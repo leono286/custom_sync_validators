@@ -39,28 +39,35 @@ export class CrossFieldFormReactiveComponent {
 
   }
 
-  get nice():boolean {
-    return this.emailsMatchForm.controls['email'].pristine && this.emailsMatchForm.controls['emailConfirmation'].pristine;
+
+  get email() {
+    return this.emailsMatchForm.get('email');
   }
-  get amazed(): boolean {
-    return (this.emailsMatchForm.controls['email'].dirty && this.emailsMatchForm.controls['email'].invalid && this.emailsMatchForm.controls['email'].value.length !== 0 &&this.emailsMatchForm.controls['emailConfirmation'].invalid ) || (this.emailsMatchForm.controls['email'].valid && this.emailsMatchForm.controls['emailConfirmation'].pristine) || (this.emailsMatchForm.controls['emailConfirmation'].invalid && this.emailsMatchForm.controls['emailConfirmation'].dirty && this.emailsMatchForm.controls['email'].invalid && this.emailsMatchForm.controls['email'].dirty)
-  }
-  get sarcastic(): boolean {
-    return (this.emailsMatchForm.controls['email'].valid && (!this.emailsMatchForm.controls['emailConfirmation'].pristine && this.emailsMatchForm.controls['emailConfirmation'].invalid)) || this.emailsMatchForm.controls['emailConfirmation'].valid && (this.emailsMatchForm.controls['email'].dirty && this.emailsMatchForm.controls['email'].invalid)
+  get emailConfirmation() {
+    return this.emailsMatchForm.get('emailConfirmation');
   }
 
-  get frowning(): boolean {
-    return this.emailsMatchForm.controls['email'].invalid && this.emailsMatchForm.controls['email'].value.length === 0 && this.emailsMatchForm.controls['email'].dirty && this.emailsMatchForm.controls['emailConfirmation'].invalid && this.emailsMatchForm.controls['emailConfirmation'].value.length === 0 && this.emailsMatchForm.controls['emailConfirmation'].dirty
-    )
+  get nice(): boolean {
+    return (this.email.pristine || this.emailConfirmation.pristine) && this.email.invalid && this.emailConfirmation.invalid;
+  }
+  get amazed(): boolean {
+    return (this.email.valid || this.emailConfirmation.valid) && (this.email.invalid || this.emailConfirmation.invalid)
+  }
+
+  get sarcastic(): boolean {
+    return this.email.dirty && this.emailConfirmation.dirty && this.email.invalid && this.emailConfirmation.invalid && (this.email.value || this.emailConfirmation.value);
   }
 
   get angry(): boolean {
-    return this.emailsMatchForm.controls['email'].valid &&
-    this.emailsMatchForm.controls['emailConfirmation'].valid &&
-    (this.emailsMatchForm.invalid && this.emailsMatchForm.errors.hasOwnProperty('mismatchedEmails'))
+    return this.email.valid && this.emailConfirmation.valid && this.emailsMatchForm.invalid;
   }
 
-  get happy():boolean {
+  get frowning(): boolean {
+    return this.email.dirty && this.emailConfirmation.dirty && this.email.invalid && this.emailConfirmation.invalid && !this.email.value && !this.emailConfirmation.value;
+  }
+
+  get happy(): boolean {
     return this.emailsMatchForm.valid;
   }
+
 }

@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sync-template-driven',
@@ -11,7 +11,6 @@ export class SyncTemplateDrivenComponent {
   yesNoInput: string;
 
   constructor() { }
-
 
   nice(control: FormControl):boolean {
     return control && control.pristine;

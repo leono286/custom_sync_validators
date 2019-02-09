@@ -1,12 +1,24 @@
 
-<!--
 
-  <app-async-template-driven></app-async-template-driven>
-  <app-async-reactive></app-async-reactive>
-  <app-cross-field-template-driven></app-cross-field-template-driven>
+<button id="main-button" mat-raised-button color="primary" [matMenuTriggerFor]="mainMenu"><mat-icon>menu</mat-icon></button>
 
-  <app-sync-template-driven></app-sync-template-driven>
-  <app-sync-reactive></app-sync-reactive>
--->
-<app-cross-field-reactive></app-cross-field-reactive>
+<mat-menu #mainMenu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="singleInput">Single Input</button>
+  <button mat-menu-item [matMenuTriggerFor]="crossField">Cross Field</button>
+</mat-menu>
+
+<mat-menu #singleInput="matMenu">
+  <button mat-menu-item (click)="showComponent('singleInputReactive')">Reactive Form</button>
+  <button mat-menu-item (click)="showComponent('singleInputTemplateDriven')">Template Driven Form</button>
+</mat-menu>
+
+<mat-menu #crossField="matMenu">
+  <button mat-menu-item (click)="showComponent('crossFieldReactive')">Reactive Form</button>
+  <button mat-menu-item (click)="showComponent('crossFieldTemplateDriven')">Template Driven Form</button>
+</mat-menu>
+
+<app-sync-reactive *ngIf="componentToShow == 'singleInputReactive'"></app-sync-reactive>
+<app-sync-template-driven *ngIf="componentToShow == 'singleInputTemplateDriven'"></app-sync-template-driven>
+<app-cross-field-reactive *ngIf="componentToShow == 'crossFieldReactive'"></app-cross-field-reactive>
+<app-cross-field-template-driven *ngIf="componentToShow == 'crossFieldTemplateDriven'"></app-cross-field-template-driven>
 

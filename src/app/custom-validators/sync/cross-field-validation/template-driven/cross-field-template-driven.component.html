@@ -1,4 +1,4 @@
-<div class="purchaseform-container">
+<!-- <div class="purchaseform-container">
   <div class="right-pane pane">
     <div class="welcome-text">
       <p>
@@ -45,6 +45,82 @@
         <p>------------------------</p>
         <p>FormErrors: {{ emailsMatchForm.errors | json }}</p>
         <p>FormStatus: {{ emailsMatchForm.status }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="form-container">
+  <div class="welcome-text">
+    <h2>
+      <strong>Cross field</strong> custom validator example <br />
+      <span class="small">(Template driven forms)</span>
+    </h2>
+  </div>
+  <div class="pane">
+    <div class="form-wrapper">
+      <div class="form-asistant">
+        <div class="image-wrapper">
+          <img *ngIf="nice(emailsMatchForm)" src="assets/img/nice.jpeg" alt="" />
+          <img *ngIf="amazed(emailsMatchForm)" src="assets/img/amazed.jpeg" alt="" />
+          <img *ngIf="sarcastic(emailsMatchForm)" src="assets/img/sarcastic.jpeg" alt="" />
+          <img *ngIf="angry(emailsMatchForm)" src="assets/img/angry.jpeg" alt="" />
+          <img *ngIf="frowning(emailsMatchForm)" src="assets/img/frowning.jpeg" alt="" />
+          <img *ngIf="happy(emailsMatchForm)" src="assets/img/happy.jpeg" alt="" />
+        </div>
+        <div class="text-bubble">
+          <img src="assets/img/text-globe.png" alt="" />
+          <div class="message">
+            <span *ngIf="nice(emailsMatchForm)">Please fill in the form</span>
+            <span *ngIf="amazed(emailsMatchForm)">Doing well</span>
+            <span *ngIf="sarcastic(emailsMatchForm)">C'mon is not that hard</span>
+            <span *ngIf="angry(emailsMatchForm)">emails must match!!</span>
+            <span *ngIf="frowning(emailsMatchForm)">R U kidding me?</span>
+            <span *ngIf="happy(emailsMatchForm)">Yaaay!!</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-container">
+        <form #emailsMatchForm="ngForm" appMatchingEmailsValidator>
+          <div>
+            <mat-form-field class="full-width">
+              <input
+              matInput
+              placeholder="EMAIL"
+              [(ngModel)]="emailField"
+              name="email"
+              #email = "ngModel"
+              required
+              [pattern]="EMAIL_REGEX"
+            />
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="full-width">
+              <input
+              matInput
+              placeholder="EMAIL CONFIRMATION"
+              [(ngModel)]="emailConfirmationField"
+              name="emailConfirmation"
+              #emailConfirmation = "ngModel"
+              required
+              [pattern]="EMAIL_REGEX"
+            />
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="status-peek">
+      <div>
+        <pre>email: {{ email.errors | json }}</pre>
+        <pre>emailConfirmation: {{emailConfirmation.errors | json}}</pre
+        >
+      </div>
+      <div class="overall-status">
+        <pre>Form Errors: {{ emailsMatchForm.errors | json }}</pre>
+        <pre>Form Status: {{ emailsMatchForm.status }}</pre>
       </div>
     </div>
   </div>

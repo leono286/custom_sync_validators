@@ -1,6 +1,5 @@
 
-
-$body-bg-color: #2C2B30;
+$errors-bg-color: #2C2B30;
 $pf-rightpane-bg: #FFC30F;
 $pf-text-color: #581845;
 $image-border-color: #FF5733;
@@ -8,12 +7,8 @@ $pf-input-color: #7d8994;
 
 /* You can add global styles to this file, and also import other style files */
 
-html,
 body {
   height: 100%;
-}
-
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   box-sizing: border-box;
@@ -21,6 +16,36 @@ body {
     box-sizing: border-box;
   }
 }
+
+button#main-button {
+  height: 70px;
+  margin: 40px 0 0 40px;
+  background-color: $errors-bg-color;
+  mat-icon.mat-icon.material-icons.mat-icon-no-color {
+    font-size: 50px;
+    line-height: 1;
+    width: 50px;
+    height: 50px;
+  }
+}
+
+div.mat-menu-panel {
+  max-width: 380px;
+}
+
+button.mat-menu-item {
+  height: 60px;
+  padding: 0 35px;
+}
+
+button.mat-menu-item-submenu-trigger::after {
+  border-width: 7px 0 7px 7px;
+}
+
+.mat-menu-item {
+  font-size: 27px;
+}
+
 
 .form-container {
   margin: 0 auto;
@@ -107,16 +132,12 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 29px;
+          font-size: 33px;
           padding: 15px 19px;
           text-align: center;
         }
       }
-
-
     }
-
-
 
     .form-container {
       margin-top: 30px;
@@ -160,7 +181,8 @@ body {
       padding: 30px;
       flex-direction: column;
       line-height: 1.7em;
-      max-width: 800px;
+      max-width: 1000px;
+      overflow-x: hidden;
 
       .overall-status {
         font-size: 1.2em;

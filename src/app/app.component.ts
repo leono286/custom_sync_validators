@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { log } from 'util';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'cross-field-validation';
+
+  // singleInputReactive
+  // singleInputTemplateDriven
+  // crossFieldReactive
+  // crossFieldTemplateDriven
+
+  componentToShow = 'singleInputReactive';
+
+  showComponent(selected:string){
+    this.componentToShow = selected;
+  }
+
 }
